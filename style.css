@@ -1,0 +1,158 @@
+* {
+    padding: 0;
+    margin: 0;
+    --boxShadowRight: 1px 0px rgba(0, 0, 0, 0.5);
+    --boxShadowUpBlack: 0px 1px rgba(0, 0, 0, 0.5);
+    --boxShadowUpWhite: 0px 1px rgba(255, 255, 255);
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+@media print {
+    #container {
+        width: 100%;
+        height: 100vh;
+        box-shadow: none;
+    }
+}
+
+header {
+    background-color: black;
+    color: white;
+    padding: 1em;
+}
+
+footer {
+    background-color: black; 
+    color: white;
+    text-align: center;
+}
+
+#middle-part {
+    padding: 1em 0em;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    background-color: orange;
+}
+
+form {
+    padding: 1em 2em;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+textarea {
+    width: 25em;
+}
+
+button {
+    width: 10em;
+    align-self: center;
+    margin-top: 0.2em;
+}
+
+textarea {
+    resize: none;
+}
+
+input[type="date"] {
+    width: 8em;
+}
+
+.exp input[type="text"] {
+    width: 14em;
+}
+
+#inputs, #aboutInp, #educationInp, #experienceInp, #skillsInp, #languagesInp, .exp, .edu {
+    display: flex;
+    flex-direction: column;
+}
+
+.exp div, .edu div {
+    display: flex;
+    justify-content: space-between;
+}
+
+#aboutInp, #educationInp, #experienceInp, #extraInfoInp {
+    margin-bottom: 0.3em;
+}
+
+#container {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+    width: 48em;
+    height: 100%;
+    display: flex;
+    gap: 1.5em;
+    background-color: white;
+}
+
+#left-side {
+    display: flex;
+    flex-direction: column;
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    box-shadow: var(--boxShadowRight);
+    background-color: #3B3B3D;
+    color: #FFFFFF;
+    padding-bottom: 1em;
+}
+
+#left-side-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+#left-side img {
+    margin: 0.5em 0em;
+    border-radius: 200px;
+}
+
+#info h2, #extraInfo h2 {
+    margin-bottom: 0.7em;
+    padding-bottom: 0.1em;
+    box-shadow: var(--boxShadowUpWhite);
+}
+
+#education h2, #experience h2 {
+    box-shadow: var(--boxShadowUpBlack);
+    padding-bottom: 0.1em;
+}
+
+#skills h4, #languages h4 {
+    margin: 1em 0em;
+}
+
+#info p {
+    margin-bottom: 0.4em;
+}
+
+#right-side {
+    display: flex;
+    flex-grow: 1;
+    padding-right: 1.5em;
+    flex-direction: column;
+    padding-bottom: 1em;
+}
+
+#top-side {
+    padding-top: 2em;
+}
+
+#top-side p {
+    padding-top: 0.5em;
+}
+
+#education, #experience {
+    padding-top: 2em;
+}
+
+#education div, #experience div {
+    padding-top: 1em;
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>CV-App</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h2>Build-A-CV</h2>
+      </header>
+      <div id="middle-part">
+        <div id="inputs">
+          <form>
+              <div id="aboutInp">
+                <h3>About you</h3>
+                <label for="firstName">First name: </label>
+                <input id="firstName" name="firstName" v-model="cv_data.about.firstName"/>
+                <label for="lastName">Last name: </label>
+                <input id="lastName" name="lastName" v-model="cv_data.about.lastName"/>
+                <label for="email">Email: </label>
+                <input id="email" name="email" v-model="cv_data.about.email"/>
+                <label for="address">Address: </label>
+                <input id="address" name="address" v-model="cv_data.about.address"/>
+                <label for="phone">Phone number: </label>
+                <input id="phone" name="phone" v-model="cv_data.about.phone"/>
+                <label for="description">About you: </label>
+                <textarea id="description" name="description" rows="10" cols="80" v-model="cv_data.about.description"></textarea>
+              </div>
+              <div id="educationInp">
+                <h3>Education</h3>
+                <div class="edu" v-for="(education, index) in cv_data.education">
+                  <div>
+                    <label for="eduName">Institution's name: </label>
+                    <input name="eduName" v-model="education.name"/>
+                  </div>
+                  <div>
+                    <label for="field">Field of study:</label>
+                    <input name="field" v-model="education.field"/>
+                  </div>
+                  <div>
+                    <label for="startDate">Start date: </label>
+                    <input type="date" name="startDate" v-model="education.start"/>
+                  </div>
+                  <div>
+                    <label for="graduationDate">Graduation date: </label>
+                    <input type="date" name="graduationDate" v-model="education.end" :disabled="education.checkbox"/>
+                  </div>
+                  <div>
+                    <label for="studying">Still studying here?</label>
+                    <input type="checkbox" name="studying" @click="check('education', index)"/>
+                  </div>
+                    <button type="button" @click="removeInput('education', index)">Remove education</button>
+                </div>
+                <button type="button" id="addEdu" @click="addInput('education')">Add education</button>
+              </div>
+              <div id="experienceInp">
+                <h3>Work experience</h3>
+                <div class="exp" v-for="(experience, index) in cv_data.experience">  
+                  <div>
+                    <label for="expName">Company's name: </label>
+                    <input type="text" name="expName" v-model="experience.name"/>
+                  </div>
+                  <div>
+                    <label for="posOccupied">Position occupied: </label>
+                    <input type="text" name="posOccupied" v-model="experience.position"/>
+                  </div>
+                  <div>
+                    <label for="workStart">Start date: </label>
+                    <input type="date" name="workStart" v-model="experience.start"/>
+                  </div>
+                  <div>
+                    <label for="workEnd">End date: </label>
+                    <input type="date" name="workEnd" v-model="experience.end" :disabled="experience.checkbox"/>
+                  </div>
+                  <div>
+                    <label for="working">Still working here?</label>
+                    <input type="checkbox" name="working" @click="check('experience', index)"/>
+                  </div>
+                    <button type="button" @click="removeInput('experience', index)">Remove experience</button>
+                </div>
+                <button type="button" id="addExp" @click="addInput('experience')">Add experience</button>
+              </div>
+              <div id="extraInfoInp">
+                <div id="skillsInp">
+                  <h3>Skills</h3>
+                  <input type="text" id="skills" v-model="cv_data.extraInfo.skills" name="skills"/>
+                </div>
+                <div id="languagesInp">
+                  <h3>Languages</h3>
+                  <input type="text" id="languages" v-model="cv_data.extraInfo.languages" name="languages"/>
+                </div>
+              </div>
+          </form>
+        </div>
+        <div id="container">
+          <div id="left-side">
+              <img alt="cv-pic" :src="cv_pic" width="250" height="250" />
+              <div id="left-side-text">
+                  <div id="info">
+                      <h2>Contact</h2>
+                      <p>{{ cv_data.about.email }}</p>
+                      <p>{{ cv_data.about.address }}</p>
+                      <p>{{ cv_data.about.phone }}</p>
+                  </div>
+                  <div id="extraInfo">
+                      <h2>Extra information</h2>
+                      <div id="skills">
+                          <h4>Skills</h4>
+                          <p>{{ cv_data.extraInfo.skills }}</p>
+                      </div>
+                      <div id="languages">
+                          <h4>Languages</h4>
+                          <p>{{ cv_data.extraInfo.languages }}</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div id="right-side">
+              <div id="top-side">
+                  <h1>{{ `${cv_data.about.firstName.toUpperCase()} ${cv_data.about.lastName.toUpperCase()} ` }}</h1>
+                  <p>{{ cv_data.about.description }}</p>
+              </div>
+              <div id="education">
+                  <h2>Education</h2>
+                  <div v-for="education in cv_data.education">
+                    <h3>{{ education.name }}</h3>
+                    <p>{{ education.field }}</p>
+                    <p>{{ education.start }} - {{ education.end }}</p>
+                  </div>
+              </div>
+              <div id="experience">
+                  <h2>Experience</h2>
+                  <div v-for="experience in cv_data.experience">
+                    <h3>{{ experience.name }}</h3>
+                    <p>{{ experience.position }}</p>
+                    <p>{{ experience.start }} - {{ experience.end }}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+      <footer>
+        Made by ktavean. 2022
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
